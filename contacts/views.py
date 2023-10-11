@@ -10,8 +10,7 @@ class ContactCreateView(CreateView):
     context_object_name = 'contact'
     form_class = ContactForm
     template_name = 'add_contact.html'
-    success_url = reverse_lazy('contact_list')
-
+    success_url = reverse_lazy('phonebook:contact_list')
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
@@ -19,6 +18,7 @@ class ContactCreateView(CreateView):
             data['phone_number_formset'] = PhoneNumberFormSet(self.request.POST, prefix='phone_number')
         else:
             data['phone_number_formset'] = PhoneNumberFormSet(prefix='phone_number')
+        print(data)
         return data
 
     def form_valid(self, form):
@@ -45,7 +45,6 @@ class ContactListView(ListView):
     model = Contact
     context_object_name = 'contacts'
     template_name = 'contact_list.html'
-    context_object_name = 'contacts'
 
 
 class ContactDetailView(DetailView):

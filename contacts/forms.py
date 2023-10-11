@@ -15,4 +15,4 @@ class PhoneNumberForm(forms.ModelForm):
         fields = ['number']
 
 
-PhoneNumberFormSet = inlineformset_factory(Contact, PhoneNumber, form=PhoneNumberForm, extra=1)
+PhoneNumberFormSet = inlineformset_factory(Contact, PhoneNumber, form=PhoneNumberForm, fields=['number'], extra=1)

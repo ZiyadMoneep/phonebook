@@ -1,23 +1,25 @@
 {% extends '_base.html' %}
 {% load static %}
 
-
 {% block content %}
 <h2>Add Contact</h2>
-
-<button type="button" id="add_phone_number">Add Phone Number</button>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    {{ phone_number_formset.management_form }}
     <div id="phone_numbers">
+        <!-- Initial phone number input field -->
         {{ phone_number_formset.management_form }}
-        {{ phone_number_formset.as_p }}
+        {% for form in phone_number_formset %}
+        {{ form.as_table }}
+        {% endfor %}}
+
+        <!-- Add new phone number button -->
+        <button type="button" id="add_phone_number">Add Phone Number</button>
     </div>
+
     <input type="submit" value="Save Contact">
 </form>
 
-
-
+<a href="{% url 'phonebook:contact_list' %}">Back to Contact List</a>
 
 {% endblock %}
