@@ -1,0 +1,13 @@
+docker-compose-prod.yml
+__pycache__/
+db.sqlite3
+.DS_Store
+*.sqlite3
+*.pyc
+*.pyo
+*.pyd
+.cache/
+.git/
+.idea/
+.vscode/
+venv/

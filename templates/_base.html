@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Phonebook App</title>
+</head>
+<body>
+<header>
+    <h1>My Phonebook App</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'phonebook:add_contact' %}">Add Contact</a></li>
+            <li><a href="{% url 'phonebook:contact_list' %}">contact list</a></li>
+
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Find the "Add Phone Number" button by its ID
+        var addButton = $('#add_phone_number');
+
+        // Find the phone number forms container by its ID
+        var phoneNumbers = $('#phone_numbers');
+
+        // Function to add a new phone number form
+        addButton.click(function () {
+            var formCount = phoneNumbers.children().length;
+            var newForm = phoneNumbers.children(':first').clone();
+            newForm.find('input').val(''); // Clear input values
+            phoneNumbers.append(newForm);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Contact Details</h2>
+<p><strong>Name:</strong> {{ contact.name }}</p>
+
+<h3>Phone Numbers:</h3>
+<ul>
+    {% for phone_number in phone_numbers %}
+    <li>{{ phone_number.number }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'phonebook:contact_list' %}">Back to Contact List</a>
+{% endblock %}

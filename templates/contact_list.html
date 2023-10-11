@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Contact List</h2>
+<ul>
+    {% for contact in contacts %}
+    <li><a href="{% url 'phonebook:contact_detail' contact.pk %}">{{ contact.name }}</a></li>
+
+    {% endfor %}
+</ul>
+{% endblock %}
