@@ -18,8 +18,8 @@ class ContactViewTests(TestCase):
             'phone_number_set-INITIAL_FORMS': '0',
             'phone_number_set-MIN_NUM_FORMS': '0',
             'phone_number_set-MAX_NUM_FORMS': '1000',
-            'phone_number_set-0-number': '123-456-7890',
-            'phone_number_set-1-number': '987-654-3210',
+            'phone_number_set-0-number': '+123-456-7890',
+            'phone_number_set-1-number': '+987-654-3210',
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)

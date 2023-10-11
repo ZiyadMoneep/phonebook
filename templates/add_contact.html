@@ -22,6 +22,7 @@
 
 <a href="{% url 'phonebook:contact_list' %}">Back to Contact List</a>
 
+
 <script>
     // JavaScript code to add new input field
     const addButton = document.getElementById("add_phone_number");
@@ -34,22 +35,7 @@
 
         // Create a new formset form
         const newForm = document.createElement("div");
-        newForm.innerHTML = `<table>
-        <tr>
-          <th><label for="id_phone_number-${numForms}-number">Number:</label></th>
-          <td>
-            <input type="tel" name="phone_number-${numForms}-number" maxlength="128" id="id_phone_number-${numForms}-number">
-          </td>
-        </tr>
-        <tr>
-          <th><label for="id_phone_number-${numForms}-DELETE">Delete:</label></th>
-          <td>
-            <input type="checkbox" name="phone_number-${numForms}-DELETE" id="id_phone_number-${numForms}-DELETE">
-            <input type="hidden" name="phone_number-${numForms}-id" id="id_phone_number-${numForms}-id">
-            <input type="hidden" name="phone_number-${numForms}-contact" id="id_phone_number-${numForms}-contact">
-          </td>
-        </tr>
-      </table>`;
+        newForm.innerHTML = `{{ phone_number_formset.empty_form.as_table }}`.replace(/_prefix_/g, numForms);
         formset.appendChild(newForm);
 
         // Update the total number of forms in the formset
