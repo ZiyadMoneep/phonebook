@@ -3,7 +3,7 @@
 
 {% block content %}
 <h2>Add Contact</h2>
-<form method="post">
+<form method="post" id="contact_form">
     {% csrf_token %}
     {{ form.as_p }}
     <div id="phone_numbers">
@@ -11,7 +11,7 @@
         {{ phone_number_formset.management_form }}
         {% for form in phone_number_formset %}
         {{ form.as_table }}
-        {% endfor %}}
+        {% endfor %}
 
         <!-- Add new phone number button -->
         <button type="button" id="add_phone_number">Add Phone Number</button>
@@ -21,5 +21,40 @@
 </form>
 
 <a href="{% url 'phonebook:contact_list' %}">Back to Contact List</a>
+
+<script>
+    // JavaScript code to add new input field
+    const addButton = document.getElementById("add_phone_number");
+    const formset = document.getElementById("phone_numbers");
+    const totalForms = document.getElementById("id_phone_number-TOTAL_FORMS");
+
+    addButton.addEventListener("click", () => {
+        // Get the total number of forms in the formset
+        const numForms = parseInt(totalForms.value);
+
+        // Create a new formset form
+        const newForm = document.createElement("div");
+        newForm.innerHTML = `<table>
+        <tr>
+          <th><label for="id_phone_number-${numForms}-number">Number:</label></th>
+          <td>
+            <input type="tel" name="phone_number-${numForms}-number" maxlength="128" id="id_phone_number-${numForms}-number">
+          </td>
+        </tr>
+        <tr>
+          <th><label for="id_phone_number-${numForms}-DELETE">Delete:</label></th>
+          <td>
+            <input type="checkbox" name="phone_number-${numForms}-DELETE" id="id_phone_number-${numForms}-DELETE">
+            <input type="hidden" name="phone_number-${numForms}-id" id="id_phone_number-${numForms}-id">
+            <input type="hidden" name="phone_number-${numForms}-contact" id="id_phone_number-${numForms}-contact">
+          </td>
+        </tr>
+      </table>`;
+        formset.appendChild(newForm);
+
+        // Update the total number of forms in the formset
+        totalForms.value = numForms + 1;
+    });
+</script>
 
 {% endblock %}

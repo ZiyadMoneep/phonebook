@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Phonebook App</title>
+    <title>Phonebook App</title>
 </head>
 <body>
 <header>
-    <h1>My Phonebook App</h1>
+    <h1>Phonebook App</h1>
     <nav>
         <ul>
             <li><a href="{% url 'phonebook:add_contact' %}">Add Contact</a></li>
@@ -19,23 +19,5 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-<script>
-    $(document).ready(function () {
-        // Handle adding a new phone number form
-        $('#add_phone_number').click(function () {
-            var formCount = $('#id_phone_number_set-TOTAL_FORMS').val();
-            var newForm = $('#phone_numbers .phone_number:last').clone();
-            newForm.find(':input').each(function () {
-                var name = $(this).attr('name').replace('-' + (formCount - 1) + '-', '-' + formCount + '-');
-                var id = 'id_' + name;
-                $(this).attr({'name': name, 'id': id}).val('').removeAttr('value');
-            });
-            formCount++;
-            $('#id_phone_number_set-TOTAL_FORMS').val(formCount);
-            $('#phone_numbers .phone_number:last').after(newForm);
-        });
-    });
-</script>
 </body>
 </html>
