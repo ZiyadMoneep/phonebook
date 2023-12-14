@@ -1,6 +1,6 @@
 # Phonebook App
 
-This is a simple Phone Book Application to store contacts.
+This is a Phonebook Application to store contacts.
 
 ## Table of Contents
 
